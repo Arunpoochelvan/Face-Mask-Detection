@@ -50,7 +50,7 @@ def percentage(u,pre):
 def predict():
   if request.method=='POST':
     img=request.files['ima'].read()
-    print(img)
+    
     npimg = np.fromstring(img, np.uint8)
 # convert numpy array to image
     img = cv2.imdecode(npimg,cv2.IMREAD_COLOR)
@@ -61,19 +61,19 @@ def predict():
     image = np.expand_dims(image3, axis=0)
 
     imgarray=image
-    print(imgarray)
+    
     u=model.predict(imgarray)
     pre=processesing(u)
-    print(u)
+    
     perc=percentage(u,pre)
     
     if pre==0:
-      print(0)
+      
       response="Mask ON! You are Safe"
       return render_template("prediction.html",predict=response,percent=str(perc)+" %")
 
     if pre==1:
-      print(1)
+      
       response="Mask OFF! Please wear the Mask"
       return render_template("prediction.html",predict=response,percent=str(perc)+" %")
 
