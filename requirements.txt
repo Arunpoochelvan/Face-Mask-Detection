@@ -33,7 +33,6 @@ mock==3.0.5
 networkx==2.4
 numpy==1.18.2
 Pillow
-matplotlib
 oauthlib==3.1.0
 opt-einsum==3.2.0
 pandas==1.0.3
