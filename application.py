@@ -4,7 +4,6 @@ import pandas as pd
 import sklearn.metrics as m
 from keras.utils.np_utils import to_categorical
 import os
-import cv2
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense,Conv2D,Flatten,Activation,MaxPooling2D
