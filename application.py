@@ -4,7 +4,7 @@ import pandas as pd
 import sklearn.metrics as m
 from keras.utils.np_utils import to_categorical
 import os
-import cv2
+#import cv2
 from sklearn.model_selection import train_test_split
 from keras.models import Sequential
 from keras.layers import Dense,Conv2D,Flatten,Activation,MaxPooling2D
@@ -17,6 +17,13 @@ import argparse
 from keras.applications.vgg16 import VGG16
 from keras.models import Model
 import tensorflow as tf
+from PIL import Image
+from matplotlib import cm
+
+new_width  = 224
+new_height = 224
+
+
 
 tb._SYMBOLIC_SCOPE.value = True
 
@@ -32,7 +39,8 @@ def images(img):
     image_read=[]
     image1=image.load_img(img)
     image2=image.img_to_array(image1)
-    image3=cv2.resize(image2,(224,224))
+    #image3=cv2.resize(image2,(224,224))
+    image3=image3.resize((new_width, new_height), Image.ANTIALIAS)
     image_read.append(image3)
     img_array=np.asarray(image_read)
     return img_array
@@ -53,11 +61,13 @@ def predict():
     
     npimg = np.fromstring(img, np.uint8)
 # convert numpy array to image
-    img = cv2.imdecode(npimg,cv2.IMREAD_COLOR)
-    cv2.imwrite("images/output.png",img)
+    #img = cv2.imdecode(npimg,cv2.IMREAD_COLOR)
+    from PIL import Image
+    img = Image.fromarray(np.uint8(cm.gist_earth(npimg)*255))
+    #cv2.imwrite("images/output.png",img)
 
 
-    image3=cv2.resize(img,(224,224))
+    image3=img.resize((new_width, new_height), Image.ANTIALIAS)
     image = np.expand_dims(image3, axis=0)
 
     imgarray=image
