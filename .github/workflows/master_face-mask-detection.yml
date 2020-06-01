@@ -30,4 +30,4 @@ jobs:
       with:
         app-name: 'face-mask-detection'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5ee7be3ed5c24a22b052456301204331 }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_edafc604493d4663999b1a9a307e40eb }}
